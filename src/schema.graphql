@@ -1,14 +1,19 @@
+# Define your schema below. Remember, every field must have a resolver.
 type Query {
-  info: String!
-  feed: [Link!]!
+  description: String!
+  allUsers: [User!]!
+  user(id: ID!): User!
 }
 
 type Mutation {
-  post(url: String!, description: String!): Link!
+  createUser(firstName: String!, lastName: String!, favoriteColor: String): User!
+  deleteUser(id: ID!): User
+  modifyUser(id: ID!, firstName: String, lastName: String, favoriteColor: String): User
 }
 
-type Link {
+type User {
   id: ID!
-  url: String!
-  description: String!
+  firstName: String!
+  lastName: String!
+  favoriteColor: String
 }
