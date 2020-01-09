@@ -23,30 +23,32 @@ Every resolver receives 4 arguments:
 * **context**--shared by all resolvers in the query. Allows resolvers to communicate
 * **info**--contains information about the execution state of the query, including the field name, path to the field from the root
 
-<!-- # Prisma
+# Prisma
 Prisma is used to connect GraphQL to a persistent data store.
 
 To set up Prisma locally, follow the steps below.
 
-1. Run the following commands
+1. Run the following commands:
 ```
-npm install -g prisma
-prisma init database
+npm add prisma -g
+prisma deploy --new
 ```
 
-2. Select the desired option
+2. Select Demo server + MySQL database and follow the prompts in the terminal. Note that your endpoint has been created and added to prisma.yml. 
 
 
-3. Generate the Prisma client with 
+3. Generate the Prisma client with the command below. This will create the library that will allow you to read / write using Prisma. 
 ```
 prisma generate
 ``` 
 
-4. Make sure Docker is installed on your machine. Modify docker-compose.yml according to the needs of your connection.
+5. Any time a change is made to your prisma datamodel, you must re-run
+```
+prisma deploy
+```
+This will re-generate your client library as well.
 
-
-
-Now, you can use the Prisma client by including the following line at the top of your files:
+6. Now, you can use the Prisma client by including the following line at the top of your files:
 ```
 const { prisma } = require('./generated/prisma-client')
 ``` 
@@ -54,9 +56,9 @@ const { prisma } = require('./generated/prisma-client')
 Files ending in .prisma use GraphQL schema definition language (SDL) so this will look very similar to your schema.graphql file. The '@id' directive in datamodel.prisma tells Prisma to autogenerate a GUID for records of type Link. Similarly, '@createdAt' tells Prisma to autogenerate a timestamp for the 'createdAt' field.
 
 ## prisma.yml
-This file points Prisma to the HTTP endpoint for your API, the Prisma datamodel, and specifies which language the client should be generated in and where it should be located (https://www.howtographql.com/graphql-js/4-adding-a-database/). -->
-
+This file points Prisma to the HTTP endpoint for your API, the Prisma datamodel, and specifies which language the client should be generated in and where it should be located (https://www.howtographql.com/graphql-js/4-adding-a-database/).
 
 ## Sources
 * https://www.howtographql.com/
 * https://www.prisma.io/docs/1.34/get-started/01-setting-up-prisma-new-database-JAVASCRIPT-a002/
+* https://www.prisma.io/docs/prisma-client/basic-data-access/writing-data-JAVASCRIPT-rsc6/

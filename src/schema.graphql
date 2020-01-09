@@ -6,13 +6,14 @@ type Query {
 }
 
 type Mutation {
-  createUser(firstName: String!, lastName: String!, favoriteColor: String): User!
+  createUser(password: String!, firstName: String!, lastName: String!, favoriteColor: String): User!
   deleteUser(id: ID!): User
   modifyUser(id: ID!, firstName: String, lastName: String, favoriteColor: String): User
 }
 
 type User {
   id: ID!
+  password: String!
   firstName: String!
   lastName: String!
   favoriteColor: String
